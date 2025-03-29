@@ -6,10 +6,10 @@ const fnlb = new FNLB.default();
 
 async function startFNLB() {
     await fnlb.start({
-        apiToken: 'API Token',
+        apiToken: 'DGfCBefvjOU-UORpSFBh8gbArVEGkKK5xb-BB7kZk8NfEFj6hiCf8v2Nefu6',
         numberOfShards: 1,
         botsPerShard: 5,
-        categories: ['category ID'],
+        categories: ['67c2fd571906bd75e5239684'],
         logLevel: 'DEBUG'
     });
 }
