@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Bot</title>
+    <script>
+        (async () => {
+            const FNLB = await import('https://cdn.jsdelivr.net/npm/fnlb'); // CDN link to import FNLB
+
+            const fnlb = new FNLB.default();
+
+            async function startFNLB() {
+                await fnlb.start({
+                    apiToken: 'YOUR_API_TOKEN',
+                    numberOfShards: 1,
+                    botsPerShard: 5,
+                    categories: ['YOUR_CATEGORY_ID'],
+                    logLevel: 'DEBUG'
+                });
+            }
+
+            async function restartFNLB() {
+                console.log('Restarting FNLB...');
+                await fnlb.stop();
+                await startFNLB();
+            }
+
+            await startFNLB();
+
+            setInterval(restartFNLB, 3600000); // Restarts every hour
+        })();
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Fortnite Bot</h1>
+    <p>Your Fortnite bot is running in the background.</p>
+    <p>Keep this website open for continuous operation.</p>
+</body>
+</html>
