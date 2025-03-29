@@ -1,7 +1,0 @@
-name = "fnlb-worker"
-type = "javascript"
-
-account_id = "a949517f80d6d344b57803803f8aa993"
-workers_dev = true
-
-compatibility_date = "2025-03-29"
