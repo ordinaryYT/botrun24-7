@@ -1,25 +1,26 @@
-(async () => {
-    const FNLB = await import('fnlb');
+// api/fnlb.js
 
-    const fnlb = new FNLB.default();
+import { FNLB } from 'fnlb';
 
-    async function startFNLB() {
-        await fnlb.start({
-            apiToken: 'API Token', // Replace with your actual API token
-            numberOfShards: 1,
-            botsPerShard: 5,
-            categories: ['category ID'], // Replace with actual category ID
-            logLevel: 'DEBUG'
-        });
-    }
+const fnlb = new FNLB.default();
 
-    async function restartFNLB() {
-        console.log('Restarting FNLB...');
-        await fnlb.stop();
-        await startFNLB();
-    }
+async function startFNLB() {
+    await fnlb.start({
+        apiToken: 'API Token',
+        numberOfShards: 1,
+        botsPerShard: 5,
+        categories: ['category ID'],
+        logLevel: 'DEBUG'
+    });
+}
 
+async function restartFNLB() {
+    console.log('Restarting FNLB...');
+    await fnlb.stop();
     await startFNLB();
+}
 
-    setInterval(restartFNLB, 3600000);
-})();
+export default async function handler(req, res) {
+    await startFNLB();
+    res.status(200).json({ message: 'FNLB started successfully!' });
+}
