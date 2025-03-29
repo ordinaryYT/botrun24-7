@@ -1,5 +1,3 @@
-// api/fnlb.js
-
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
 });
@@ -10,6 +8,7 @@ async function handleRequest(request) {
 
   const fnlb = new FNLB.default();
 
+  // Start FNLB function
   async function startFNLB() {
     try {
       await fnlb.start({
@@ -25,6 +24,7 @@ async function handleRequest(request) {
     return new Response('FNLB started successfully!', { status: 200 });
   }
 
+  // Restart FNLB function
   async function restartFNLB() {
     console.log('Restarting FNLB...');
     try {
@@ -35,6 +35,10 @@ async function handleRequest(request) {
     }
   }
 
-  // Start FNLB when the request is received
-  return await startFNLB();
+  // If the request is a GET, start FNLB
+  if (request.method === 'GET') {
+    return await startFNLB();
+  }
+
+  return new Response('Invalid request method', { status: 405 });
 }
